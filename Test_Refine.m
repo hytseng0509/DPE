@@ -4,7 +4,7 @@ function [ex_mat ex_mats] = Test_Refine(ex_mat_ini, M, I, in_mat, minDim, minTz,
 % Input:
 %     - ex_mat_ini: initial extrinsic matrix 3*4
 %     - M: target image (double)
-%     - I:    camera image (double)
+%     - I: camera image (double)
 %     - in_mat: camera intrinsic matrix 4*4
 %     - minDim: length of the shorter side of the target
 %     - minTz:  minimum distance between camera and target

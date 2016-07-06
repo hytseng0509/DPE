@@ -18,7 +18,7 @@ function poses = get2Poses(in_mat, ex_mat, minDim);
 end
 
 function pose = exMat2Rz0RxRz1(R, t)
-	rx = pi - acos(R(3,3));
+	rx = acos(R(3,3)) - pi;
 	if (rx == 0)
 		rz0 = 0;
 		rz1 = atan2(-R(1,2), R(1,1));
