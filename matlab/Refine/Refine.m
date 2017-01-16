@@ -1,14 +1,14 @@
 function [ex_mat ex_mats] = Refine(marker, img, in_mat, ex_mat, minDim, delta, bounds, steps, dim, photometricInvariance, verbose)
   
   % smooth images
-	blur_size = 4 * 2 + 1;
-	params.blur_kernel  = fspecial('gaussian', blur_size, 2);
-	marker = imfilter(marker,params.blur_kernel,'symmetric');
-	img = imfilter(img,params.blur_kernel,'symmetric');
+  blur_size = 4 * 2 + 1;
+  params.blur_kernel  = fspecial('gaussian', blur_size, 2);
+  marker = imfilter(marker,params.blur_kernel,'symmetric');
+  img = imfilter(img,params.blur_kernel,'symmetric');
 
-	% rgb to ycbcr
-	marker = rgb2ycbcrNorm(marker);
-	img = rgb2ycbcrNorm(img);
+  % rgb to ycbcr
+  marker = rgb2ycbcrNorm(marker);
+  img = rgb2ycbcrNorm(img);
   
   % get 2 poses
   poses = get2Poses(in_mat, ex_mat, minDim);
@@ -33,8 +33,8 @@ function [ex_mat ex_mats] = Refine(marker, img, in_mat, ex_mat, minDim, delta, b
 end
 
 function img = rgb2ycbcrNorm(img)
-	img = rgb2ycbcr(img);
-	img(:,:,1) = (img(:,:,1) - 16/255) / (235/255-16/255);
-	img(:,:,2) = (img(:,:,2) - 16/255) / (240/255-16/255);
-	img(:,:,3) = (img(:,:,3) - 16/255) / (240/255-16/255);
+  img = rgb2ycbcr(img);
+  img(:,:,1) = (img(:,:,1) - 16/255) / (235/255-16/255);
+  img(:,:,2) = (img(:,:,2) - 16/255) / (240/255-16/255);
+  img(:,:,3) = (img(:,:,3) - 16/255) / (240/255-16/255);
 end

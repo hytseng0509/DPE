@@ -14,14 +14,14 @@ function ex_mat = Test_APE(Marker, img, in_mat, minDim, minTz, maxTz, delta, pho
 %     - verbose: show the state of the method
 % Output:
 %     - ex_mat: estimated extrinsic matrix
-	AddPaths;
-	if (~exist('needcompile','var'))
-		needcompile = 0;
-	end
-	if (needcompile == 1)
-		CompileMex;
-	end
+  AddPaths;
+  if (~exist('needcompile','var'))
+    needcompile = 0;
+  end
+  if (needcompile == 1)
+    CompileMex;
+  end
   
-   [ex_mat,~] = APE(Marker,img,in_mat,minDim,photometricInvariance,minTz,maxTz,delta,verbose);
+  [ex_mat,~] = APE(Marker,img,in_mat,minDim,photometricInvariance,minTz,maxTz,delta,verbose);
 end
 

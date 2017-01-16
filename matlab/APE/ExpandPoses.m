@@ -14,8 +14,8 @@ function [expandedConfigs, steps] = ExpandConfigsRandom(configs,steps,npoints,de
   ranges = [steps.tx,steps.ty,steps.tz,steps.rx,steps.rz0,steps.rz1];
   addvec = repmat(ranges,[npoints*numConfigs,1]);
   
-  addvec(:,3) = (randvec(:,3) >= 0) .* addvec(:,3).*(expanded(:,3).^2) ./ (1 - abs(addvec(:,3)).*expanded(:,3))...
-              + (randvec(:,3) < 0) .* addvec(:,3).*(expanded(:,3).^2) ./ (1 + abs(addvec(:,3)).*expanded(:,3));
+  addvec(:,3) = (randvec(:,3) >= 0) .* addvec(:,3).*(expanded(:,3).^2) ./ (1 - addvec(:,3).*expanded(:,3))...
+              + (randvec(:,3) < 0) .* addvec(:,3).*(expanded(:,3).^2) ./ (1 + addvec(:,3).*expanded(:,3));
               
   weight = expanded(:,3) + norm([marker_w, marker_h]) .* sin(expanded(:,4));
   

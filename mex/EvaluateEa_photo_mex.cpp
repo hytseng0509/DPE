@@ -51,21 +51,21 @@ void mexFunction(int nlhs, mxArray *plhs[],
   xs_centered = (double *)malloc(numPoints*sizeof(double));
   ys_centered = (double *)malloc(numPoints*sizeof(double));
   valsI1 = (double *)malloc(numPoints*sizeof(double));
-	valsI1_cr = (double *)malloc(numPoints*sizeof(double));
-	valsI1_cb = (double *)malloc(numPoints*sizeof(double));
+  valsI1_cr = (double *)malloc(numPoints*sizeof(double));
+  valsI1_cb = (double *)malloc(numPoints*sizeof(double));
    
   /* Retrieve the input data */
   img1 = mxGetPr(prhs[0]);
   double* tmp_img2 = mxGetPr(prhs[1]);
-	img1_cb = mxGetPr(prhs[2]);
-	double* tmp_img2_cb = mxGetPr(prhs[3]);
-	img1_cr = mxGetPr(prhs[4]);
-	double* tmp_img2_cr = mxGetPr(prhs[5]);
+  img1_cb = mxGetPr(prhs[2]);
+  double* tmp_img2_cb = mxGetPr(prhs[3]);
+  img1_cr = mxGetPr(prhs[4]);
+  double* tmp_img2_cr = mxGetPr(prhs[5]);
   trans = mxGetPr(prhs[6]);
   xs = (int*)mxGetPr(prhs[7]);
   ys = (int*)mxGetPr(prhs[8]);
-	double marker_w = mxGetScalar(prhs[9]);
-	double marker_h = mxGetScalar(prhs[10]);
+  double marker_w = mxGetScalar(prhs[9]);
+  double marker_h = mxGetScalar(prhs[10]);
     
   //img2 is of height 3*img2 (this padding is for not needing to check bounds)
   img2 = (double*)malloc(5*h2*w2*sizeof(double));
@@ -75,8 +75,8 @@ void mexFunction(int nlhs, mxArray *plhs[],
   img2_cr = (double*)malloc(5*h2*w2*sizeof(double));
   memset(img2_cr, 2, 5*h2*w2*sizeof(double));
   memcpy(img2_cr+2*h2*w2, tmp_img2_cr, h2*w2*sizeof(double));
-	
-	img2_cb = (double*)malloc(5*h2*w2*sizeof(double));
+  
+  img2_cb = (double*)malloc(5*h2*w2*sizeof(double));
   memset(img2_cb, 2, 5*h2*w2*sizeof(double));
   memcpy(img2_cb+2*h2*w2, tmp_img2_cb, h2*w2*sizeof(double));
     
@@ -129,8 +129,8 @@ void mexFunction(int nlhs, mxArray *plhs[],
     double* ys_target_cr = (double *)malloc(numPoints*sizeof(double));
     double* ys_target_cb = (double *)malloc(numPoints*sizeof(double));
     for (int j = 0; j < numPoints ; j++) {
-			double marker_x = double(*ptrXsc);
-			double marker_y = double(*ptrYsc);
+      double marker_x = double(*ptrXsc);
+      double marker_y = double(*ptrYsc);
       targetPoint_x = int(double(a11*marker_x  + a12*marker_y + a13) / double(c1*marker_x  + c2*marker_y + c3) + 0.5); // includes rounding(perspective form)
       targetPoint_y = int(double(a21*marker_x  + a22*marker_y + a23) / double(c1*marker_x  + c2*marker_y + c3) + 0.5 + 2*h2); // includes rounding
       targetInd = (targetPoint_y - 1)*w2 + targetPoint_x - 1; // -1 is for c
@@ -138,8 +138,8 @@ void mexFunction(int nlhs, mxArray *plhs[],
       Xi = (*ptrVals) ;
       Yi = img2[targetInd];
       ys_target[j] = Yi;
-			ys_target_cr[j] = img2_cr[targetInd];
-			ys_target_cb[j] = img2_cb[targetInd];
+      ys_target_cr[j] = img2_cr[targetInd];
+      ys_target_cb[j] = img2_cb[targetInd];
       
       sumXi += Xi;
       sumYi += Yi;
@@ -174,9 +174,9 @@ void mexFunction(int nlhs, mxArray *plhs[],
   free(xs_centered);
   free(ys_centered);
   free(valsI1);
-	free(valsI1_cr);
-	free(valsI1_cb);
+  free(valsI1_cr);
+  free(valsI1_cb);
   free(img2);
-	free(img2_cb);
-	free(img2_cr);
+  free(img2_cb);
+  free(img2_cr);
 }

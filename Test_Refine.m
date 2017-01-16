@@ -15,16 +15,16 @@ function [ex_mat ex_mats] = Test_Refine(ex_mat_ini, M, I, in_mat, minDim, minTz,
 %     - verbose: show the state of the method
 % Output:
 %     - ex_mat: estimated extrinsic matrix
-	AddPaths;
+  AddPaths;
   if (~exist('needcompile','var'))
-		needcompile = 0;
-	end
-	if (needcompile == 1)
-		CompileMex;
-	end
+    needcompile = 0;
+  end
+  if (needcompile == 1)
+    CompileMex;
+  end
   
   % preCalculation
-	[marker, img, bounds, steps, dim] = preCal(in_mat, M, I, minDim, minTz, maxTz, delta, verbose);
+  [marker, img, bounds, steps, dim] = preCal(in_mat, M, I, minDim, minTz, maxTz, delta, verbose);
   
   % refine
   [ex_mat ex_mats] = Refine(M, I, in_mat, ex_mat_ini, minDim, delta, bounds, steps, dim, photometricInvariance, verbose);
